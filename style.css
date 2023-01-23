@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    padding: 2px;
+    /* padding: 2px; */
     margin: 0;
     /* border: 1px solid green; */
 }
@@ -34,7 +34,6 @@ p {
 .card {
     font-size: 4.2em;
     line-height: 100%;
-    /* border: 1px solid red; */
 }
 
 .red {
@@ -69,9 +68,9 @@ p {
 }
 
 button{
-    /* font-size: 12px; */
     padding: 10px;
     margin: 20px;
+    min-width: 200px;
 }
 p.result{
     background-color: lightblue;
@@ -92,19 +91,25 @@ p.rank{
 
 @media (min-width:620px) {
     .card{
-        font-size: 8em;
+        font-size: 9em;
     }
 }
-@media (min-width:1050px) {
+@media (min-width:800px) {
     .game-area {
         flex-direction: row;
     }
+    .card{
+        font-size: 6em;
+    }
+    button{
+        min-width: 300px;
+    }
 }
-@media (min-width:1300px) {
+@media (min-width:1100px) {
     html{
         font-size: 1.5em;
     }
     .card{
-        font-size:6.8em;
+        font-size:6em;
     }
 }
