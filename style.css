@@ -1,5 +1,4 @@
-
-  @import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
 
 * {
     box-sizing: border-box;
@@ -74,10 +73,13 @@ p {
     overflow: hidden;
 }
 
-.winner>h2, .winner>p.rank{
+.winner>h2,
+.winner>p.rank {
     background-color: green;
 }
-.loser>h2, .loser>p.rank{
+
+.loser>h2,
+.loser>p.rank {
     background-color: darkred;
 }
 
@@ -99,11 +101,12 @@ button {
     border-radius: 5px;
 }
 
-button:hover{
+button:hover {
     background-color: blue;
     box-shadow: 5px 5px 5px grey;
 }
-button:active{
+
+button:active {
     box-shadow: 2px 2px 0px grey;
     background-color: rgb(0, 0, 161);
 }
@@ -164,10 +167,12 @@ div.rules {
     html {
         font-size: 1.5em;
     }
+
     .card {
         font-size: 5.2em;
     }
 }
+
 @media (min-width:1280px) {
     html {
         font-size: 2em;
