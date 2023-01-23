@@ -6,7 +6,7 @@
 }
 
 html{
-    min-width: 545px;
+    min-width: 450px;
 }
 
 body {
@@ -30,7 +30,7 @@ p{
 }
 
 .card {
-    font-size: 8em;
+    font-size: 6em;
     line-height: 100%;
     padding: 0 5px;
 }
@@ -65,6 +65,8 @@ p{
         flex-direction: row;
     }
 }
-@media (min-width:600px) {
-    
+@media (min-width:545px) {
+    .card{
+        font-size: 8em;
+    }
 }
