@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
-    /* padding: 2px; */
-    margin: 0;
+    /* padding: 0; */
+    /* margin: 0; */
     /* border: 1px solid green; */
 }
 
@@ -11,29 +11,40 @@ html {
 }
 
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Arial Narrow', Arial, sans-serif;
     text-align: center;
     padding: 20px;
     min-width: 320px;
 }
 
+
 h1 {
     padding: 20px;
+    margin: 5px 0;
 }
 
-h2 {
+.player-name {
     padding: 12px;
+    margin: 0;
     background-color: rgba(0, 0, 0, 0.76);
     color: #fff;
 }
 
 p {
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .card {
     font-size: 4.2em;
     line-height: 100%;
+    box-shadow: 2px 2px 8px grey;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.card:active {
+    box-shadow: 0px 0px 5px grey;
 }
 
 .red {
@@ -67,49 +78,59 @@ p {
     padding-top: 20px;
 }
 
-button{
+button {
     padding: 10px;
     margin: 20px;
     min-width: 200px;
 }
-p.result{
+
+p.result {
     background-color: lightblue;
     margin: 10px 0;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.76);
 }
-p.rank{
-    margin: 10px;
+
+p.rank {
+    margin: 0px;
+    margin-top: 10px;
     background-color: lightskyblue;
 }
 
+div.rules {
+    text-align: left;
+    background-color: rgba(135, 206, 250, 0.384);
+    padding: 20px;
+}
+
 @media (min-width:460px) {
-    .card{
+    .card {
         font-size: 6em;
     }
 }
 
 @media (min-width:620px) {
-    .card{
+    .card {
         font-size: 9em;
     }
 }
+
 @media (min-width:800px) {
     .game-area {
         flex-direction: row;
     }
-    .card{
-        font-size: 6em;
+
+    .card {
+        font-size: 5.2em;
     }
-    button{
+
+    button {
         min-width: 300px;
     }
 }
+
 @media (min-width:1100px) {
-    html{
+    html {
         font-size: 1.5em;
-    }
-    .card{
-        font-size:6em;
     }
 }

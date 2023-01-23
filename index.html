@@ -12,26 +12,51 @@
 </head>
 
 <body>
+    <div class="deck"></div>
     <div class="frame">
         <h1>Poker Hands</h1>
         <div class="game-area">
             <div class="player">
                 <h2 class="player-name">Player 1</h2>
                 <div class="cards"></div>
-                <p class="rank"></p>
+                <p class="rank">No Rank</p>
             </div>
             <div class="player">
                 <h2 class="player-name">Player 2</h2>
                 <div class="cards"></div>
-                <p class="rank"></p>
+                <p class="rank">No Rank</p>
             </div>
         </div>
-        <p class="result"></p>
+        <p class="result">Winner result</p>
         <div>
-            <button>Deal a hand</button>
+            <button>Deal a new hand</button>
         </div>
-
+        <div class="rules">
+            <h3>Rules</h3>
+            <p>In the card game poker, a hand consist of five cards and are ranked from lowest to highest, in the
+                following
+                way:</p>
+            <ul>
+                <li><strong>High Card</strong>: Highest value card.</li>
+                <li><strong>One Pair</strong>: Two cards of the same value.</li>
+                <li><strong>Two Pairs</strong>: Two different pairs.</li>
+                <li><strong>Three of a Kind</strong>: Three cards of the same value.</li>
+                <li><strong>Straight</strong>: All cards are consecutive values.</li>
+                <li><strong>Flush</strong>: All cards of the same suit.</li>
+                <li><strong>Full House</strong>: Three of a kind and a pair.</li>
+                <li><strong>Four of a Kind</strong>: Four cards of the same value.</li>
+                <li><strong>Straight Flush</strong>: All cards are consecutive values of same suit.</li>
+                <li><strong>Royal Flush</strong>: Ten, Jack, Queen, King, Ace, in same suit.</li>
+            </ul>
+            <p>The cards are valued in the order:<br>
+                2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.</p>
+            <p>If two players have the same ranked hands then the rank made up of the highest value wins; for example, a
+                pair of eights beats a pair of fives (see example 1 below). But if two ranks tie, for example, both
+                players have a pair of queens, then highest cards in each hand are compared (see example 4 below); if
+                the highest cards tie then the next highest cards are compared, and so on.</p>
+        </div>
     </div>
+
 </body>
 
 </html>

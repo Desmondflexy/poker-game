@@ -4,7 +4,16 @@ const card_suits = ['S', 'H', 'D', 'C'];  // spade, heart, diamond, club
 const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 const deck = [];
 card_values.forEach(val => card_suits.forEach(suit => deck.push(val + suit)));
-const card_unicodes = {'cover': '&#127136;'};
+const card_unicodes = { 'cover': '&#127136;' };
+
+for (let i = 0; i < 2; i++) {
+    for (let j = 0; j < 5; j++) {
+        const card_div = document.createElement('div');
+        card_div.innerHTML = card_unicodes['cover'];
+        cards_divs[i].append(card_div);
+        card_div.className = 'card';
+    }
+}
 
 /**Deals a random card to player from the deck of cards */
 function deal_a_card(player) {
@@ -209,17 +218,13 @@ function define_rank(player) {
     }
 }
 
-
-// for (let i = 0; i < 1; i++) {
-//     play_poker();
-// }
-
 // button click will deal a card
-document.querySelector('button').addEventListener('click', ()=>{
-    for (let i=0; i<2; i++){
+document.querySelector('button').addEventListener('click', () => {
+    // clear cards div
+    for (let i = 0; i < 2; i++) {
         cards_divs[i].innerHTML = '';
     }
     play_poker();
-}) 
+})
 //******************************************************8************************ */
 
