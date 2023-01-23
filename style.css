@@ -1,12 +1,13 @@
-*{
+* {
     box-sizing: border-box;
     padding: 2px;
     margin: 0;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
-html{
+html {
     font-size: 1em;
+    min-width: 360px;
 }
 
 body {
@@ -16,61 +17,89 @@ body {
     min-width: 320px;
 }
 
-h1{
+h1 {
     padding: 20px;
 }
-h2{
+
+h2 {
     padding: 12px;
+    background-color: yellow;
 }
 
-p{
+p {
     padding: 10px;
 }
 
 .card {
-    font-size: 3.5em;
+    font-size: 4.2em;
     line-height: 100%;
-    padding: 0 5px;
+    /* border: 1px solid red; */
 }
-.red{
+
+.red {
     color: darkred;
 }
-.black{
+
+.black {
     color: black;
 }
 
-.game-area{
+.game-area {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 10px;
 }
 
-.player{
+.player {
     min-width: 300px;
     width: 100%;
-    /* padding: 20px; */
-    /* border: 2px solid green; */
+    padding: 0;
+    background-color: rgb(205, 235, 205);
 }
 
-.cards{
+.cards {
     display: flex;
     justify-content: center;
+    gap: 5px;
+    padding-top: 20px;
 }
 
+button{
+    font-size: 20px;
+    padding: 20px;
+    margin: 20px;
+}
+p.result{
+    background-color: lightblue;
+    margin: 10px 0;
+}
+p.rank{
+    margin: 10px;
+    background-color: lightskyblue;
+}
+
+@media (min-width:460px) {
+    .card{
+        font-size: 6em;
+    }
+}
+
+@media (min-width:620px) {
+    .card{
+        font-size: 8em;
+    }
+}
 @media (min-width:1050px) {
-    .game-area{
+    .game-area {
         flex-direction: row;
     }
 }
-@media (min-width:560px) {
-    /* .card{
-        font-size: 6em;
-    } */
-}
-
-@media (min-width:600px) {
-    /* .card{
-        font-size: 8em;
-    } */
+@media (min-width:1300px) {
+    html{
+        font-size: 1.5em;
+    }
+    .card{
+        font-size:6.8em;
+    }
 }

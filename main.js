@@ -4,6 +4,7 @@ const card_suits = ['S', 'H', 'D', 'C'];  // spade, heart, diamond, club
 const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 const deck = [];
 card_values.forEach(val => card_suits.forEach(suit => deck.push(val + suit)));
+const card_unicodes = {'cover': '&#127136;'};
 
 /**Deals a random card to player from the deck of cards */
 function deal_a_card(player) {
@@ -88,8 +89,8 @@ function play_poker() {
     const r2 = rank(player_2);
 
     let result
-    if (r1 > r2) result = 'player1_wins (ranking)';
-    else if (r1 < r2) result = 'player2_wins (ranking)';
+    if (r1 > r2) result = 'player1_wins (rank)';
+    else if (r1 < r2) result = 'player2_wins (rank)';
     else {
         const p1 = handvalue(player_1);
         const p2 = handvalue(player_2);
@@ -104,8 +105,8 @@ function play_poker() {
             const b = p2.map(i => count(p2, i));
             const n2 = p2[b.indexOf(Math.max(...b))];
 
-            if (n1 > n2) result = 'player1_wins (same_ranked_hands__high_value)';
-            else if (n1 < n2) result = 'player2_wins (same_ranked_hands__high_value)';
+            if (n1 > n2) result = 'player1_wins (high_value_rank)';
+            else if (n1 < n2) result = 'player2_wins (high_value_rank)';
             else {
                 for (let i = 0; i < Math.max(...a); i++) {
                     p1.splice(p1.indexOf(n1), 1);
@@ -118,11 +119,10 @@ function play_poker() {
         }
     }
     // print result to console
-    if ((r1 > 0 || r2 > 0) && (result.includes(''))) {
-        // console.log(`[${player_1}] ${r1} -- ${r2} [${player_2}] -- ${result}`);
-    }
+    // if ((r1 > 0 || r2 > 0) && (result.includes(''))) {
+    //     console.log(`[${player_1}] ${r1} -- ${r2} [${player_2}] -- ${result}`);
+    // }
 
-    const unicodes = {};
     let jj = 0;
     for (let j = 10; j <= 13; j++) {
         let ii = 0;
@@ -130,7 +130,7 @@ function play_poker() {
             if (i === 12) continue;
             const card = 'A23456789TJQK'[ii] + 'SHDC'[jj];
             const hex = `1f0${j.toString(16)}${i.toString(16)}`;
-            unicodes[card] = `&#${parseInt(hex, 16)};`;
+            card_unicodes[card] = `&#${parseInt(hex, 16)};`;
             ii++;
         }
         jj++;
@@ -143,7 +143,7 @@ function play_poker() {
         for (let j = 0; j < 5; j++) {
             const card_div = document.createElement('div');
             const card = players[i][j];
-            card_div.innerHTML = unicodes[card];
+            card_div.innerHTML = card_unicodes[card];
             cards_divs[i].append(card_div);
             if (card.includes('D') || card.includes('H')) {
                 card_div.className = 'red card';
@@ -214,6 +214,7 @@ function define_rank(player) {
 //     play_poker();
 // }
 
+// button click will deal a card
 document.querySelector('button').addEventListener('click', ()=>{
     for (let i=0; i<2; i++){
         cards_divs[i].innerHTML = '';
