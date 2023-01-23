@@ -38,7 +38,7 @@ p {
     font-size: 4.2em;
     line-height: 100%;
     box-shadow: 2px 2px 8px grey;
-    padding: 5px;
+    /* padding: 0px; */
     background-color: #fff;
     border-radius: 2px;
 }
