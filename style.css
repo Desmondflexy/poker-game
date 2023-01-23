@@ -23,7 +23,7 @@ h1 {
     margin: 5px 0;
 }
 
-.player-name {
+.player h2 {
     padding: 12px;
     margin: 0;
     background-color: rgba(0, 0, 0, 0.76);
@@ -71,6 +71,13 @@ p {
     overflow: hidden;
 }
 
+.winner>h2, .winner>p.rank{
+    background-color: green;
+}
+.loser>h2, .loser>p.rank{
+    background-color: darkred;
+}
+
 .cards {
     display: flex;
     justify-content: center;
@@ -95,7 +102,8 @@ p.result {
 p.rank {
     margin: 0px;
     margin-top: 10px;
-    background-color: lightskyblue;
+    background-color: rgba(0, 0, 0, 0.76);
+    color: #fff;
 }
 
 div.rules {
@@ -103,6 +111,17 @@ div.rules {
     background-color: rgba(135, 206, 250, 0.384);
     padding: 20px;
     border-radius: 10px;
+    font-size: .7em;
+}
+
+.deck{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: space-around;
+    margin: 40px 0;
+    padding: 20px;
+    background-color: lightblue;
 }
 
 @media (min-width:412px) {

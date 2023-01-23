@@ -1,10 +1,32 @@
 // The Game of Poker
 const cards_divs = document.querySelectorAll('.cards');
+const p1_span = document.getElementById('p1');
+const p2_span = document.getElementById('p2');
 const card_suits = ['S', 'H', 'D', 'C'];  // spade, heart, diamond, club
 const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 const deck = [];
 card_values.forEach(val => card_suits.forEach(suit => deck.push(val + suit)));
+const deck_div = document.querySelector('.deck');
 const card_unicodes = { 'cover': '&#127136;' };
+
+let jj = 0;
+for (let j = 10; j <= 13; j++) {
+    let ii = 0;
+    for (let i = 1; i <= 14; i++) {
+        if (i === 12) continue;
+        const card = 'A23456789TJQK'[ii] + 'SHDC'[jj];
+        const hex = `1f0${j.toString(16)}${i.toString(16)}`;
+        card_unicodes[card] = `&#${parseInt(hex, 16)};`;
+        const card_div = document.createElement('div');
+        card_div.innerHTML = card_unicodes[card];
+        if (card.includes('D') || card.includes('H')) {
+            card_div.className = 'red card';
+        } else card_div.className = 'black card';
+        deck_div.append(card_div);
+        ii++;
+    }
+    jj++;
+}
 
 for (let i = 0; i < 2; i++) {
     for (let j = 0; j < 5; j++) {
@@ -132,19 +154,6 @@ function play_poker() {
     //     console.log(`[${player_1}] ${r1} -- ${r2} [${player_2}] -- ${result}`);
     // }
 
-    let jj = 0;
-    for (let j = 10; j <= 13; j++) {
-        let ii = 0;
-        for (i = 1; i <= 14; i++) {
-            if (i === 12) continue;
-            const card = 'A23456789TJQK'[ii] + 'SHDC'[jj];
-            const hex = `1f0${j.toString(16)}${i.toString(16)}`;
-            card_unicodes[card] = `&#${parseInt(hex, 16)};`;
-            ii++;
-        }
-        jj++;
-    }
-
     const players = [player_1, player_2];
     const rank_divs = document.querySelectorAll('.rank');
 
@@ -160,9 +169,20 @@ function play_poker() {
         }
         rank_divs[i].innerHTML = define_rank(players[i]);
     }
-    const result_p = document.querySelector('.result');
 
-    result_p.innerHTML = result;
+    if (result.includes('player1')){
+        p1_span.innerHTML = 'wins';
+        p2_span.innerHTML = 'loses';
+        p1_span.parentElement.parentElement.className = 'player winner';
+        p2_span.parentElement.parentElement.className = 'player loser';
+    } else if (result.includes('player2')) {
+        p1_span.innerHTML = 'loses';
+        p2_span.innerHTML = 'wins';
+        p1_span.parentElement.parentElement.className = 'player loser';
+        p2_span.parentElement.parentElement.className = 'player winner';
+    } else {
+        p1_span.innerHTML = p2_span.innerHTML = 'draws';
+    }
 
     // Both players drop their cards back on the deck
     deck.push(...player_1, ...player_2);
@@ -220,11 +240,12 @@ function define_rank(player) {
 
 // button click will deal a card
 document.querySelector('button').addEventListener('click', () => {
-    // clear cards div
+    // clear html elements before restart
     for (let i = 0; i < 2; i++) {
         cards_divs[i].innerHTML = '';
     }
+    p1_span.innerHTML = p2_span.innerHTML = '';
     play_poker();
 })
-//******************************************************8************************ */
+//*********************************************** */
 
