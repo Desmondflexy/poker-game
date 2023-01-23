@@ -1,0 +1,50 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.card {
+    font-size: 8em;
+    line-height: 100%;
+    /* width: calc(100%/6); */
+    /* background-color: aqua; */
+}
+.red{
+    color: darkred;
+}
+.black{
+    color: black;
+}
+
+.game-area{
+    display: flex;
+    justify-content: space-around;
+    
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 40px;
+    /* height: 200px; */
+}
+
+.player{
+    /* height: 300px; */
+    width: 100%;
+    background-color: rgb(172, 171, 171);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (min-width:900px) {
+    .game-area{
+        flex-direction: row;
+    }
+}
