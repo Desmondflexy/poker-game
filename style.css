@@ -1,17 +1,38 @@
+*{
+    box-sizing: border-box;
+    padding: 2px;
+    margin: 0;
+    border: 1px solid green;
+}
+
+html{
+    min-width: 545px;
+}
+
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
+    font-size: 1em;
+    padding: 20px;
 }
 
 h1{
-    text-align: center;
+    padding: 20px;
+}
+h2{
+    padding: 12px;
+}
+
+
+
+p{
+    padding: 10px;
 }
 
 .card {
     font-size: 8em;
     line-height: 100%;
-    /* width: calc(100%/6); */
-    /* background-color: aqua; */
+    padding: 0 5px;
 }
 .red{
     color: darkred;
@@ -22,29 +43,28 @@ h1{
 
 .game-area{
     display: flex;
-    justify-content: space-around;
-    
+    justify-content: center;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 40px;
-    /* height: 200px; */
 }
 
 .player{
-    /* height: 300px; */
+    min-width: 300px;
     width: 100%;
-    background-color: rgb(172, 171, 171);
-    padding: 20px;
-    border-radius: 10px;
+    /* padding: 20px; */
+    /* border: 2px solid green; */
 }
 
 .cards{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
-@media (min-width:900px) {
+@media (min-width:1050px) {
     .game-area{
         flex-direction: row;
     }
+}
+@media (min-width:600px) {
+    
 }
