@@ -1,3 +1,3 @@
 # poker-game
 
-(https://poker-desmond.netlify.app)
+https://poker-desmond.netlify.app
