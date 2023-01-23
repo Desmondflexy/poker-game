@@ -6,7 +6,7 @@ const card_suits = ['S', 'H', 'D', 'C'];  // spade, heart, diamond, club
 const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 const deck = [];
 card_values.forEach(val => card_suits.forEach(suit => deck.push(val + suit)));
-const deck_div = document.querySelector('.deck');
+// const deck_div = document.querySelector('.deck');
 const card_unicodes = { 'cover': '&#127136;' };
 
 let jj = 0;
@@ -17,12 +17,12 @@ for (let j = 10; j <= 13; j++) {
         const card = 'A23456789TJQK'[ii] + 'SHDC'[jj];
         const hex = `1f0${j.toString(16)}${i.toString(16)}`;
         card_unicodes[card] = `&#${parseInt(hex, 16)};`;
-        const card_div = document.createElement('div');
-        card_div.innerHTML = card_unicodes[card];
-        if (card.includes('D') || card.includes('H')) {
-            card_div.className = 'red card';
-        } else card_div.className = 'black card';
-        deck_div.append(card_div);
+        // const card_div = document.createElement('div');
+        // card_div.innerHTML = card_unicodes[card];
+        // if (card.includes('D') || card.includes('H')) {
+            // card_div.className = 'red card';
+        // } else card_div.className = 'black card';
+        // deck_div.append(card_div);
         ii++;
     }
     jj++;

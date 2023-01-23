@@ -1,3 +1,6 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
+
 * {
     box-sizing: border-box;
     /* padding: 0; */
@@ -13,14 +16,15 @@ html {
 body {
     font-family: 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    padding: 20px;
-    /* min-width: 360px; */
+    padding: 0;
 }
-
 
 h1 {
     padding: 20px;
     margin: 5px 0;
+    background-color: rgba(255, 255, 0, 0.562);
+    font-family: 'Contrail One', cursive;
+    font-size: 2.5em;
 }
 
 .player h2 {
@@ -38,7 +42,6 @@ p {
     font-size: 5.2em;
     line-height: 100%;
     box-shadow: 2px 2px 8px grey;
-    /* padding: 0px; */
     background-color: #fff;
     border-radius: 2px;
 }
@@ -47,11 +50,11 @@ p {
     box-shadow: 0px 0px 5px grey;
 }
 
-.red {
+.red.card {
     color: darkred;
 }
 
-.black {
+.black.card {
     color: black;
 }
 
@@ -66,8 +69,8 @@ p {
     min-width: 300px;
     width: 100%;
     padding: 0;
-    background-color: rgba(205, 235, 205, 0.626);
-    border-radius: 20px;
+    background-color: rgba(235, 235, 205, 0.626);
+    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -90,6 +93,19 @@ button {
     margin: 20px;
     min-width: 200px;
     font-size: 1em;
+    background-color: rgb(0, 51, 128);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover{
+    background-color: blue;
+    box-shadow: 5px 5px 5px grey;
+}
+button:active{
+    box-shadow: 2px 2px 0px grey;
+    background-color: rgb(0, 0, 161);
 }
 
 p.result {
@@ -110,19 +126,19 @@ div.rules {
     text-align: left;
     background-color: rgba(135, 206, 250, 0.384);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: .7em;
 }
 
-.deck{
-    display: flex;
-    flex-wrap: wrap;
+/* .deck{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
     gap: 5px;
-    justify-content: space-around;
     margin: 40px 0;
     padding: 20px;
     background-color: lightblue;
-}
+    font-size: .5em;
+} */
 
 @media (min-width:412px) {
     .card {
