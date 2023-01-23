@@ -23,7 +23,8 @@ h1 {
 
 h2 {
     padding: 12px;
-    background-color: yellow;
+    background-color: rgba(0, 0, 0, 0.76);
+    color: #fff;
 }
 
 p {
@@ -55,7 +56,9 @@ p {
     min-width: 300px;
     width: 100%;
     padding: 0;
-    background-color: rgb(205, 235, 205);
+    background-color: rgba(205, 235, 205, 0.626);
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .cards {
@@ -66,13 +69,15 @@ p {
 }
 
 button{
-    font-size: 20px;
-    padding: 20px;
+    /* font-size: 12px; */
+    padding: 10px;
     margin: 20px;
 }
 p.result{
     background-color: lightblue;
     margin: 10px 0;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.76);
 }
 p.rank{
     margin: 10px;
