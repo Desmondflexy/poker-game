@@ -6,14 +6,14 @@
 }
 
 html{
-    min-width: 450px;
+    font-size: 1em;
 }
 
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    font-size: 1em;
     padding: 20px;
+    min-width: 320px;
 }
 
 h1{
@@ -23,14 +23,12 @@ h2{
     padding: 12px;
 }
 
-
-
 p{
     padding: 10px;
 }
 
 .card {
-    font-size: 6em;
+    font-size: 3.5em;
     line-height: 100%;
     padding: 0 5px;
 }
@@ -65,8 +63,14 @@ p{
         flex-direction: row;
     }
 }
-@media (min-width:545px) {
-    .card{
+@media (min-width:560px) {
+    /* .card{
+        font-size: 6em;
+    } */
+}
+
+@media (min-width:600px) {
+    /* .card{
         font-size: 8em;
-    }
+    } */
 }
