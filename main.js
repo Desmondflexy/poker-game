@@ -1,12 +1,29 @@
 // The Game of Poker
-const cards_divs = document.querySelectorAll('.cards');
+
+// HTML Elements
 const p1_span = document.getElementById('p1');
 const p2_span = document.getElementById('p2');
+const rank_divs = document.querySelectorAll('.rank');
+const button = document.querySelector('button');
+const cards_divs = document.querySelectorAll('.cards');
+// create five card divs each for two players and store in a 2x5 array
+const card_array = [];
+for (let i = 0; i < 2; i++) {  // two players
+    const card = [];
+    for (let j = 0; j < 5; j++) {  // five cards
+        const card_div = document.createElement('div');
+        card_div.innerHTML = '&#127136;';  // back of card
+        card.push(card_div);
+        cards_divs[i].append(card_div);
+        card_div.className = 'card';
+    }
+    card_array.push(card);
+}
+
 const card_suits = ['S', 'H', 'D', 'C'];  // spade, heart, diamond, club
 const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
-const deck = [];
-card_values.forEach(val => card_suits.forEach(suit => deck.push(val + suit)));
-// const deck_div = document.querySelector('.deck');
+const deck_of_cards = [];
+card_values.forEach(val => card_suits.forEach(suit => deck_of_cards.push(val + suit)));
 const card_unicodes = { 'cover': '&#127136;' };
 
 let jj = 0;
@@ -17,56 +34,48 @@ for (let j = 10; j <= 13; j++) {
         const card = 'A23456789TJQK'[ii] + 'SHDC'[jj];
         const hex = `1f0${j.toString(16)}${i.toString(16)}`;
         card_unicodes[card] = `&#${parseInt(hex, 16)};`;
-        // const card_div = document.createElement('div');
-        // card_div.innerHTML = card_unicodes[card];
-        // if (card.includes('D') || card.includes('H')) {
-            // card_div.className = 'red card';
-        // } else card_div.className = 'black card';
-        // deck_div.append(card_div);
         ii++;
     }
     jj++;
 }
 
-for (let i = 0; i < 2; i++) {
-    for (let j = 0; j < 5; j++) {
-        const card_div = document.createElement('div');
-        card_div.innerHTML = card_unicodes['cover'];
-        cards_divs[i].append(card_div);
-        card_div.className = 'card';
-    }
-}
-
 /**Deals a random card to player from the deck of cards */
 function deal_a_card(player) {
-    const card = deck[getRandomInt(0, deck.length - 1)];
-    const pos = deck.indexOf(card);
-    player.push(...deck.splice(pos, 1));
+    const card = deck_of_cards[getRandomInt(0, deck_of_cards.length - 1)];
+    const pos = deck_of_cards.indexOf(card);
+    player.push(...deck_of_cards.splice(pos, 1));
     return player;
 }
 
 /**Returns the rank of a hand in the card game of poker.*/
 function rank(hand) {
-    // Royal flush -- 10
     const hand_values = hand.map(i => i[0]);
     const big_card_values = card_values.slice(8);
-    if (big_card_values.every(i => hand_values.includes(i)) && is_same_suit()) return 10;
-    // Straight flush -- 9
-    if (isconsecutive() && is_same_suit()) return 9;
-    // Four of a kind -- 8
-    if (n_of_a_kind(4) > 0) return 8;
-    // Full house -- 7
-    if (n_of_a_kind(3) > 0 && n_of_a_kind(2)) return 7;
-    // Flush -- 6
-    if (is_same_suit()) return 6;
-    // Straight -- 5
-    if (isconsecutive()) return 5;
-    // Three of a kind -- 4
-    if (n_of_a_kind(3) > 0) return 4;
-    // Two pair -- 3
-    if (n_of_a_kind(2) > 1) return 3;
-    // One pair -- 2 otherwise High card -- 1
-    return n_of_a_kind(2) > 0 ? 2 : 1;
+    if (big_card_values.every(i => hand_values.includes(i)) && is_same_suit()) {
+        return [10, 'Royal Flush'];
+
+    } else if (isconsecutive() && is_same_suit()) {
+        return [9, 'Straight Flush'];
+
+    } else if (n_of_a_kind(4) > 0) {
+        return [8, 'Four of a Kind'];
+
+    } else if (n_of_a_kind(3) > 0 && n_of_a_kind(2)) {
+        return [7, 'Full House'];
+
+    } else if (is_same_suit()) {
+        return [6, 'Flush'];
+
+    } else if (isconsecutive()) {
+        return [5, 'Straight'];
+
+    } else if (n_of_a_kind(3) > 0) {
+        return [4, 'Three of a Kind'];
+
+    } else if (n_of_a_kind(2) > 1) {
+        return [3, 'Two Pairs'];
+
+    } else return n_of_a_kind(2) > 0 ? [2, 'One Pair'] : [1, 'High Card'];
 
     /**Checks if card values are consecutive */
     function isconsecutive() {
@@ -107,6 +116,9 @@ function handvalue(hand) {
     return lst.map(i => i).sort((x, y) => y - x);
 }
 
+// Global variables declaration
+let r1, r2;
+
 /**Two players play a  game of poker */
 function play_poker() {
     // Random hands dealt to two players
@@ -116,8 +128,8 @@ function play_poker() {
         deal_a_card(player_1);
         deal_a_card(player_2)
     }
-    const r1 = rank(player_1);
-    const r2 = rank(player_2);
+    r1 = rank(player_1)[0];
+    r2 = rank(player_2)[0];
 
     let result
     if (r1 > r2) result = 'player1_wins (rank)';
@@ -150,27 +162,24 @@ function play_poker() {
         }
     }
     // print result to console
-    // if ((r1 > 0 || r2 > 0) && (result.includes(''))) {
-    //     console.log(`[${player_1}] ${r1} -- ${r2} [${player_2}] -- ${result}`);
-    // }
+    if ((r1 > 0 || r2 > 0) && (result.includes(''))) {
+        console.log(`[${player_1}] ${r1} -- ${r2} [${player_2}] -- ${result}`);
+    }
 
     const players = [player_1, player_2];
-    const rank_divs = document.querySelectorAll('.rank');
-
-    for (let i = 0; i < 2; i++) {
-        for (let j = 0; j < 5; j++) {
-            const card_div = document.createElement('div');
+    for (let i = 0; i < 2; i++) {  // player
+        for (let j = 0; j < 5; j++) {  // card
+            const card_div = card_array[i][j];
             const card = players[i][j];
             card_div.innerHTML = card_unicodes[card];
-            cards_divs[i].append(card_div);
             if (card.includes('D') || card.includes('H')) {
                 card_div.className = 'red card';
             } else card_div.className = 'black card';
         }
-        rank_divs[i].innerHTML = define_rank(players[i]);
+        rank_divs[i].innerHTML = rank(players[i])[1];
     }
 
-    if (result.includes('player1')){
+    if (result.includes('player1')) {
         p1_span.innerHTML = 'wins';
         p2_span.innerHTML = 'loses';
         p1_span.parentElement.parentElement.className = 'player winner';
@@ -185,16 +194,14 @@ function play_poker() {
     }
 
     // Both players drop their cards back on the deck
-    deck.push(...player_1, ...player_2);
+    deck_of_cards.push(...player_1, ...player_2);
     player_1.splice(0);
     player_2.splice(0);
 }
 
 
 /**Returns the number of occurence of an element in an array */
-function count(arr, elem) {
-    return arr.filter(i => i === elem).length;
-}
+const count = (arr, elem) => arr.filter(i => i === elem).length;
 
 /**Compare two arrays -- arr1 > arr2*/
 function arrayCompare(arr1, arr2) {
@@ -213,39 +220,18 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function define_rank(player) {
-    switch (rank(player)) {
-        case 10:
-            return 'Royal Flush';
-        case 9:
-            return 'Straight Flush';
-        case 8:
-            return 'Four of a Kind';
-        case 7:
-            return 'Full House';
-        case 6:
-            return 'Flush';
-        case 5:
-            return 'Straght';
-        case 4:
-            return 'Three of a Kind';
-        case 3:
-            return 'Two Pairs';
-        case 2:
-            return 'One Pair';
-        default:
-            return 'High Card';
+// button click will deal a card
+function new_deal() {
+    for (let i = 0; i < 1; i++) {
+        // clear html elements before restart
+        p1_span.innerHTML = p2_span.innerHTML = '';
+        if (true) {
+            play_poker();
+        }
     }
 }
 
-// button click will deal a card
-document.querySelector('button').addEventListener('click', () => {
-    // clear html elements before restart
-    for (let i = 0; i < 2; i++) {
-        cards_divs[i].innerHTML = '';
-    }
-    p1_span.innerHTML = p2_span.innerHTML = '';
-    play_poker();
-})
+button.onclick = new_deal;
+
 //*********************************************** */
 
