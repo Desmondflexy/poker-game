@@ -3,9 +3,9 @@
 // HTML Elements
 const p1_span = document.getElementById('p1');
 const p2_span = document.getElementById('p2');
-const rank_divs = document.querySelectorAll('.rank');
+const rank_div = document.querySelectorAll('.rank');
 const button = document.querySelector('button');
-const cards_divs = document.querySelectorAll('.cards');
+const cards_div = document.querySelectorAll('.cards');
 // create five card divs each for two players and store in a 2x5 array
 const card_array = [];
 for (let i = 0; i < 2; i++) {  // two players
@@ -14,7 +14,7 @@ for (let i = 0; i < 2; i++) {  // two players
         const card_div = document.createElement('div');
         card_div.innerHTML = '&#127136;';  // back of card
         card.push(card_div);
-        cards_divs[i].append(card_div);
+        cards_div[i].append(card_div);
         card_div.className = 'card';
     }
     card_array.push(card);
@@ -157,7 +157,6 @@ function poker(hand1, hand2) {
     return_cards();
 
     return {
-        // 'hand_rank': [r1, r2],
         'rank1': r1[0], 'rank2': r2[0],
         'rank1_name': r1[1], 'rank2_name': r2[1],
         'result': result,
@@ -200,9 +199,8 @@ function createPokerHtml(hand1, hand2, result, r1, r2) {
             if (card.includes('D') || card.includes('H')) {
                 card_div.className = 'red card';
             } else card_div.className = 'black card';
-            card_div.addEventListener('click', () => flip_card(card_div, card));
         }
-        rank_divs[i].innerHTML = r[i];
+        rank_div[i].innerHTML = r[i];
     }
 
     if (result.includes('player1')) {
@@ -231,19 +229,6 @@ function new_deal() {
     return [data, hand1, hand2];
 }
 
-function flip_card(card_div, card) {
-    console.log(`${card_div.innerHTML} -- ${card_unicodes['cover']}`);
-    if (ucode(card_div.innerHTML) !== card_unicodes['cover']) {
-        card_div.innerHTML = card_unicodes['cover'];
-        card_div.className = 'card'
-    } else {
-        card_div.innerHTML = card_unicodes[card];
-        if (card.includes('D') || card.includes('H')) {
-            card_div.className = 'red card';
-        } else card_div.className = 'black card';
-    }
-}
-
 /**Get the unicode of a card */
 const ucode = (card) => '&#' + card.codePointAt() + ';';
 
@@ -252,5 +237,16 @@ button.addEventListener('click', () => {
     createPokerHtml(data[1], data[2], data[0]['result'], data[0]['rank1_name'], data[0]['rank2_name']);
 })
 
+// add event listener to each of the ten cards
+// const card_div = document.querySelectorAll('.card');
+// for (let i = 0; i < 10; i++) card_div[i].addEventListener('click', () => flip_card(card_div[i], ucode(card_div[i].innerHTML)));
+
+// function flip_card(card, unicode) {
+//     if (ucode(card.innerHTML) === '&#127136;') {
+//         card.innerHTML = unicode;
+//     } else {
+//         card.innerHTML = '&#127136;';
+//     }
+// }
 //*********************************************** */
 
