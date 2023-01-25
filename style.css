@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap');
+
 
 * {
     box-sizing: border-box;
     /* padding: 0; */
     /* margin: 0; */
-    /* border: 1px solid green; */
+    /* border: 1px solid blue; */
 }
 
 html {
@@ -13,48 +15,47 @@ html {
 }
 
 body {
-    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Source Serif Pro', serif;
     text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.header,
+.footer {
+    padding: 10px 5px;
+    margin: 0;
+    background-color: rgb(228, 196, 52);
+    font-family: 'Contrail One', cursive;
+    font-size: 20px;
+    text-shadow: 4px 4px 8px grey;
+}
+
+.header h1 {
+    margin: 0;
     padding: 0;
 }
 
-h1 {
-    padding: 20px;
-    margin: 5px 0;
-    background-color: rgba(255, 255, 0, 0.562);
-    font-family: 'Contrail One', cursive;
-    font-size: 2.5em;
+.player h2,
+.rank {
+    animation-name: changeColor;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
 }
 
-.player h2 {
-    padding: 12px;
-    margin: 0;
-    background-color: rgba(0, 0, 0, 0.76);
+.footer {
     color: #fff;
+    background-color: rgb(30, 32, 32);
+    padding: 20px;
+    margin: 0;
+    font-size: 1em;
+    text-shadow: none;
+
 }
 
-p {
-    padding: 10px 0;
-}
-
-.card {
-    font-size: 5.2em;
-    line-height: 100%;
-    box-shadow: 4px 4px 5px grey;
-    background-color: #fff;
-    border-radius: 2px;
-}
-
-.card:active {
-    box-shadow: 0px 0px 3px grey;
-}
-
-.red.card {
-    color: darkred;
-}
-
-.black.card {
-    color: black;
+.frame {
+    padding: 40px 10px;
+    margin: 10px;
 }
 
 .game-area {
@@ -73,21 +74,61 @@ p {
     overflow: hidden;
 }
 
-.winner>h2,
-.winner>p.rank {
-    background-color: green;
+.player h2 {
+    padding: 12px;
+    margin: 0;
+    font-size: 1.2em;
+    background-color: rgb(87, 88, 90);
+    color: #fff;
+    box-shadow: 0 0 10px blue;
 }
 
-.loser>h2,
-.loser>p.rank {
-    background-color: darkred;
+.player p {
+    padding: 10px 0;
 }
 
 .cards {
     display: flex;
     justify-content: center;
     gap: 5px;
-    padding-top: 20px;
+    padding: 20px;
+}
+
+.card {
+    font-size: 5em;
+    line-height: 100%;
+    box-shadow: 4px 4px 5px grey;
+    background-color: #fff;
+    border-radius: 2px;
+    color: rgb(42, 72, 92);
+}
+
+.card:active {
+    box-shadow: 0 0 3px grey;
+}
+
+.red.card {
+    color: darkred;
+}
+
+.black.card {
+    color: rgb(25, 25, 32);
+}
+
+.winner>h2,
+.winner>.rank {
+    background-color: green;
+    box-shadow: 0 0 10px green;
+}
+
+.loser>h2,
+.loser>.rank {
+    background-color: darkred;
+    box-shadow: 0 0 10px red;
+}
+
+.button {
+    padding: 0;
 }
 
 button {
@@ -98,7 +139,8 @@ button {
     background-color: rgb(0, 51, 128);
     color: white;
     border: none;
-    border-radius: 1em;
+    border-radius: .6em;
+    font-family: 'Source Serif Pro', serif;
 }
 
 button:hover {
@@ -111,41 +153,23 @@ button:active {
     background-color: rgb(0, 0, 161);
 }
 
-p.result {
-    background-color: lightblue;
-    margin: 10px 0;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.76);
-}
-
-p.rank {
+.rank {
     margin: 0px;
-    margin-top: 10px;
-    background-color: rgba(0, 0, 0, 0.76);
+    background-color: rgb(103, 104, 66);
     color: #fff;
+    box-shadow: 0 0 10px blue;
 }
 
-div.rules {
+.rules {
     text-align: left;
-    background-color: rgba(135, 206, 250, 0.384);
+    background-color: rgb(203, 214, 250);
     padding: 20px;
-    border-radius: 5px;
-    font-size: .7em;
+    font-size: .8em;
 }
-
-/* .deck{
-    display: grid;
-    grid-template-columns: repeat(13, 1fr);
-    gap: 5px;
-    margin: 40px 0;
-    padding: 20px;
-    background-color: lightblue;
-    font-size: .5em;
-} */
 
 @media (min-width:412px) {
     .card {
-        font-size: 6em;
+        font-size: 5.5em;
     }
 }
 
@@ -155,11 +179,15 @@ div.rules {
     }
 
     .card {
-        font-size: 6em;
+        font-size: 5.5em;
     }
 
     button {
         min-width: 300px;
+    }
+
+    .rules {
+        padding: 20px 10em;
     }
 }
 
@@ -168,13 +196,47 @@ div.rules {
         font-size: 1.5em;
     }
 
+    .header {
+        font-size: 24px;
+    }
+
+    .frame {
+        margin: 10px 40px;
+    }
+
     .card {
-        font-size: 5.2em;
+        font-size: 4.5em;
     }
 }
 
 @media (min-width:1280px) {
     html {
         font-size: 2em;
+    }
+
+    .header {
+        font-size: 30px;
+    }
+}
+
+@keyframes changeColor {
+    0% {
+        color: rgb(255, 150, 150);
+    }
+
+    25% {
+        color: rgb(255, 255, 125);
+    }
+
+    50% {
+        color: rgb(156, 238, 156)
+    }
+
+    75% {
+        color: rgb(173, 173, 245);
+    }
+
+    100% {
+        color: rgb(255, 150, 150);
     }
 }

@@ -200,6 +200,7 @@ function createPokerHtml(hand1, hand2, result, r1, r2) {
             if (card.includes('D') || card.includes('H')) {
                 card_div.className = 'red card';
             } else card_div.className = 'black card';
+            card_div.addEventListener('click', () => flip_card(card_div, card));
         }
         rank_divs[i].innerHTML = r[i];
     }
@@ -214,9 +215,7 @@ function createPokerHtml(hand1, hand2, result, r1, r2) {
         p2_span.innerHTML = 'wins';
         p1_span.parentElement.parentElement.className = 'player loser';
         p2_span.parentElement.parentElement.className = 'player winner';
-    } else {
-        p1_span.innerHTML = p2_span.innerHTML = 'draws';
-    }
+    } else p1_span.innerHTML = p2_span.innerHTML = 'draws';
 }
 
 function new_deal() {
@@ -231,6 +230,22 @@ function new_deal() {
     const data = poker(hand1, hand2);
     return [data, hand1, hand2];
 }
+
+function flip_card(card_div, card) {
+    console.log(`${card_div.innerHTML} -- ${card_unicodes['cover']}`);
+    if (ucode(card_div.innerHTML) !== card_unicodes['cover']) {
+        card_div.innerHTML = card_unicodes['cover'];
+        card_div.className = 'card'
+    } else {
+        card_div.innerHTML = card_unicodes[card];
+        if (card.includes('D') || card.includes('H')) {
+            card_div.className = 'red card';
+        } else card_div.className = 'black card';
+    }
+}
+
+/**Get the unicode of a card */
+const ucode = (card) => '&#' + card.codePointAt() + ';';
 
 button.addEventListener('click', () => {
     const data = new_deal();
