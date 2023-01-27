@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sonsie+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Emblema+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
@@ -72,21 +71,19 @@ body {
 
 .player>h2 {
     padding: 12px;
-    margin: 0;
     font-size: 1.2em;
     background-color: rgb(87, 88, 90);
-    color: #fff;
 }
 
 .player>p {
-    margin: 0px;
-    padding: 10px 0;
+    padding: 4px 0;
     background-color: rgba(0, 0, 0, 0.479);
-    color: #fff;
 }
 
 .player>h2,
 .player>p {
+    color: #fff;
+    margin: 0;
     animation-name: changeColor;
     animation-duration: 1s;
     animation-iteration-count: infinite;
@@ -113,7 +110,8 @@ body {
     box-shadow: 4px 4px 5px grey;
     background-color: #fff;
     border-radius: 2px;
-    color: rgb(42, 72, 92);
+    color: rgb(255, 255, 255);
+    background-color: rgb(83, 86, 88);
     border: 0;
 }
 
@@ -123,10 +121,12 @@ body {
 
 .red.card {
     color: darkred;
+    background-color: #fff;
 }
 
 .black.card {
     color: rgb(25, 25, 32);
+    background-color: #fff;
 }
 
 .button button {
