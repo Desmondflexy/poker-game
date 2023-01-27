@@ -36,23 +36,15 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Sonsie One', cursive;
-}
-
-.player h2,
-.rank {
-    animation-name: changeColor;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+    font-size: 1.8em;
 }
 
 .footer {
     color: #fff;
     background-color: rgb(30, 32, 32);
     padding: 20px;
-    margin: 0;
     font-size: 1em;
     text-shadow: none;
-
 }
 
 .frame {
@@ -72,23 +64,40 @@ body {
     min-width: 300px;
     width: 100%;
     padding: 0;
-    background-color: rgb(255, 254, 214);
+    background-color: rgb(185, 184, 84);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 2px 2px 8px;
+    box-shadow: 2px 2px 4px;
 }
 
-.player h2 {
+.player>h2 {
     padding: 12px;
     margin: 0;
     font-size: 1.2em;
     background-color: rgb(87, 88, 90);
     color: #fff;
-    box-shadow: 0 0 10px blue;
 }
 
-.player p {
+.player>p {
+    margin: 0px;
     padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.479);
+    color: #fff;
+}
+
+.player>h2,
+.player>p {
+    animation-name: changeColor;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.winner>h2 {
+    background-color: green;
+}
+
+.loser>h2 {
+    background-color: darkred;
 }
 
 .cards {
@@ -96,16 +105,16 @@ body {
     justify-content: center;
     gap: 5px;
     padding: 20px;
-    /* background-color: rgb(189, 214, 214); */
 }
 
 .card {
-    font-size: 5em;
+    font-size: 4em;
     line-height: 100%;
     box-shadow: 4px 4px 5px grey;
     background-color: #fff;
     border-radius: 2px;
     color: rgb(42, 72, 92);
+    border: 0;
 }
 
 .card:active {
@@ -120,19 +129,7 @@ body {
     color: rgb(25, 25, 32);
 }
 
-.winner>h2,
-.winner>.rank {
-    background-color: green;
-    box-shadow: 0 0 10px rgb(96, 255, 96);
-}
-
-.loser>h2,
-.loser>.rank {
-    background-color: darkred;
-    box-shadow: 0 0 10px rgb(250, 81, 81);
-}
-
-button {
+.button button {
     padding: 10px;
     margin: 20px;
     margin-bottom: 0;
@@ -145,36 +142,34 @@ button {
     font-family: inherit;
 }
 
-button:hover {
+.button button:hover {
     background-color: blue;
     box-shadow: 0px 0px 8px black;
 }
 
-button:active {
+.button button:active {
     box-shadow: 2px 2px 0px grey;
     background-color: rgb(0, 0, 161);
 }
 
-.rank {
-    margin: 0px;
-    background-color: rgb(103, 104, 66);
-    color: #fff;
-    box-shadow: 0 0 10px blue;
-}
-
-.rules{
+.rules {
     text-align: left;
     background-color: rgb(203, 214, 250);
     padding: 20px;
     font-size: .8em;
 }
-.rules h3{
-border-bottom: 2px solid;
+
+.rules h3 {
+    border-bottom: 2px solid;
 }
 
 @media (min-width:412px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
     .card {
-        font-size: 5.5em;
+        font-size: 4.5em;
     }
 }
 
@@ -183,11 +178,7 @@ border-bottom: 2px solid;
         flex-direction: row;
     }
 
-    .card {
-        font-size: 5.5em;
-    }
-
-    button {
+    .button button {
         min-width: 300px;
     }
 
@@ -210,7 +201,7 @@ border-bottom: 2px solid;
     }
 
     .card {
-        font-size: 4.5em;
+        font-size: 4em;
     }
 }
 
