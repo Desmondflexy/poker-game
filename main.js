@@ -2,13 +2,9 @@
 
 const p1_span = document.getElementById('p1');
 const p2_span = document.getElementById('p2');
-const rank_div = document.querySelectorAll('.player p');
-const button = document.querySelector('button');
-const cards_div = document.querySelectorAll('.cards');
 const card_array = createCards();
-const card_suits = ['S', 'H', 'D', 'C'];  // spade, heart, diamond, club
-const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 const card_unicodes = getCardUnicodes();
+const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 
 let deck_of_cards = getDeckOfCards();
 
@@ -19,9 +15,9 @@ function createCards() {
         const card = [];
         for (let j = 0; j < 5; j++) {  // five cards
             const card_div = document.createElement('button');
+            document.querySelectorAll('.cards')[i].append(card_div);
             card_div.innerHTML = '&#127136;';  // back of card
             card.push(card_div);
-            cards_div[i].append(card_div);
             card_div.className = 'card';
         }
         card_array.push(card);
@@ -31,7 +27,7 @@ function createCards() {
 
 function getDeckOfCards() {
     let deck_of_cards = [];
-    card_values.forEach(val => card_suits.forEach(suit => deck_of_cards.push(val + suit)));
+    card_values.forEach(val => ['S', 'H', 'D', 'C'].forEach(suit => deck_of_cards.push(val + suit)));
     return deck_of_cards;
 }
 
@@ -212,7 +208,7 @@ function createPokerHtml(hand, result, rName, r) {
             }
             card_div.onclick = () => flipCard(card_div, card_unicodes[card], class_name);
         }
-        rank_div[i].innerHTML = `${rName[i]} <${r[i]}>`;
+        document.querySelectorAll('.player p')[i].innerHTML = `${rName[i]} <${r[i]}>`;
     }
 
     if (result.includes('player1')) {
@@ -260,17 +256,18 @@ function consoleLog(func) {
     return;
 }
 
-button.addEventListener('click', () => {
-    let hand, rank, rank_name, result, full_info, pts;
-    // run until neither hand ranks are less than 3
+document.querySelector('.button').addEventListener('click', () => {
+    let hand, rank, rank_name, result, pts;
+    // run until a hand rank in not less than n
     do {
+        const n = 1;
         const data = newDeal();
         rank = data[0]['rank'];
         rank_name = data[0]['rank_name'];
         result = data[0]['result'];
-        full_info = data[0]['full_info'];
         pts = data[0]['rank_pts'];
         hand = data[1];
-    } while (pts[0]<3 || pts[1]<3);
+        if (pts[0] >= n || pts[1] >= n) break;
+    } while (true);
     createPokerHtml(hand, result, rank_name, rank);
 })
