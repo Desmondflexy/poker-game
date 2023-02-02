@@ -4,7 +4,7 @@ const p1_span = document.getElementById('p1');
 const p2_span = document.getElementById('p2');
 const card_array = createCards();
 const card_unicodes = getCardUnicodes();
-const card_values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+const card_values = Array.from('23456789TJQKA');
 
 let deck_of_cards = getDeckOfCards();
 
@@ -27,12 +27,12 @@ function createCards() {
 
 function getDeckOfCards() {
     let deck_of_cards = [];
-    card_values.forEach(val => ['S', 'H', 'D', 'C'].forEach(suit => deck_of_cards.push(val + suit)));
+    card_values.forEach(val => Array.from('SHDC').forEach(suit => deck_of_cards.push(val + suit)));
     return deck_of_cards;
 }
 
 function getCardUnicodes() {
-    const card_unicodes = { 'cover': '&#127136;' };
+    const card_unicodes = {};
     let jj = 0;
     for (let j = 10; j <= 13; j++) {
         let ii = 0;
@@ -98,7 +98,6 @@ function pokerHands(hand1, hand2) {
             }
         }
     }
-    deck_of_cards = getDeckOfCards();
     return {
         'rank': [r1[2], r2[2]],
         'rank_name': [r1[1], r2[1]],
@@ -109,9 +108,7 @@ function pokerHands(hand1, hand2) {
 
     /**Returns the rank of a hand in the card game of poker.*/
     function rank(hand) {
-        const hand_values = hand.map(i => i[0]);
-        const big_card_values = card_values.slice(8);
-        if (big_card_values.every(i => hand_values.includes(i)) && isSameSuit()) {
+        if (Array.from('TJQKA').every(i => hand.map(j => j[0]).includes(i)) && isSameSuit()) {
             return [10, 'Royal Flush', '1st'];
 
         } else if (isConsecutive() && isSameSuit()) {
@@ -164,8 +161,8 @@ function pokerHands(hand1, hand2) {
         /**Checks if cards are same suit. */
         function isSameSuit() {
             const hand_suits = hand.map(i => i[1]);
-            const unique_hand_suits = new Set(hand_suits);
-            return Array.from(unique_hand_suits).length === 1;
+            const unique = new Set(hand_suits);
+            return Array.from(unique).length === 1;
         }
     }
 
@@ -236,6 +233,7 @@ function newDeal() {
         dealCard(hand2)
     }
     const data = pokerHands(hand1, hand2);
+    deck_of_cards = getDeckOfCards();
     return [data, [hand1, hand2]];
 }
 
@@ -245,14 +243,8 @@ function flipCard(card_div, card, class_name) {
         card_div.className = class_name;
     } else {
         card_div.innerHTML = '&#127136;';
-        card_div.className = 'card';
+        card_div.className = 'back card';
     }
-    return;
-}
-
-/**Debugger function that console.log() function calls */
-function consoleLog(func) {
-    console.log(`Calling ${func}...`)
     return;
 }
 

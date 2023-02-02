@@ -111,7 +111,7 @@ body {
     background-color: #fff;
     border-radius: 2px;
     color: rgb(255, 255, 255);
-    background-color: rgb(83, 86, 88);
+    background-color: rgb(102, 52, 18);
     border: 0;
 }
 
@@ -127,6 +127,10 @@ body {
 .black.card {
     color: rgb(25, 25, 32);
     background-color: #fff;
+}
+
+.back.card {
+    box-shadow: 0 0 0;
 }
 
 .button button {
