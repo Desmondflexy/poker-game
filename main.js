@@ -111,35 +111,27 @@ function pokerHands(hand1, hand2) {
     /**Returns the rank of a hand in the card game of poker.*/
     function rank(hand) {
         if (Array.from('TJQKA').every(i => hand.map(j => j[0]).includes(i)) && isSameSuit()) {
-            // return [10, 'Royal Flush', '1st'];
             return { score: 10, name: 'Royal Flush', rank: '1st' };
 
         } else if (isConsecutive() && isSameSuit()) {
-            // return [9, 'Straight Flush', '2nd'];
             return { score: 9, name: 'Straight Flush', rank: '2nd' };
 
         } else if (nOfaKind(4) > 0) {
-            // return [8, 'Four of a Kind', '3rd'];
             return { score: 8, name: 'Four of a Kind', rank: '3rd' };
 
         } else if (nOfaKind(3) > 0 && nOfaKind(2)) {
-            // return [7, 'Full House', '4th'];
             return { score: 7, name: 'Full House', rank: '4th' };
 
         } else if (isSameSuit()) {
-            // return [6, 'Flush', '5th'];
             return { score: 6, name: 'Flush', rank: '5th' };
 
         } else if (isConsecutive()) {
-            // return [5, 'Straight', '6th'];
             return { score: 5, name: 'Straight', rank: '6th' };
 
         } else if (nOfaKind(3) > 0) {
-            // return [4, 'Three of a Kind', '7th'];
             return { score: 4, name: 'Three of a Kind', rank: '7th' };
 
         } else if (nOfaKind(2) > 1) {
-            // return [3, 'Two Pairs', '8th'];
             return { score: 3, name: 'Two Pairs', rank: '8th' };
 
         } else return nOfaKind(2) > 0 ?
