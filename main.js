@@ -73,30 +73,21 @@ function pokerHands(hand1, hand2) {
     if (r1.score > r2.score) result = 'player1 wins (rank)';
     else if (r1.score < r2.score) result = 'player2 wins (rank)';
     else {
-        const p1 = handvalue(hand1);
-        const p2 = handvalue(hand2);
-
-        if (r1.score < 2) {
-            if (arrayCompare(p1, p2) > 0) result = 'player1 wins (highest card)';
-            else if (arrayCompare(p1, p2) < 0) result = 'player2 wins (highest card)';
-            else result = 'draw';
-        } else {
-            const a = p1.map(i => count(p1, i));
-            const n1 = p1[a.indexOf(Math.max(...a))];
-            const b = p2.map(i => count(p2, i));
-            const n2 = p2[b.indexOf(Math.max(...b))];
-
-            if (n1 > n2) result = 'player1 wins (high value rank)';
-            else if (n1 < n2) result = 'player2 wins (high value rank)';
-            else {
-                for (let i = 0; i < Math.max(...a); i++) {
-                    p1.splice(p1.indexOf(n1), 1);
-                    p2.splice(p2.indexOf(n2), 1);
-                }
-                if (arrayCompare(p1, p2) > 0) result = 'player1 wins (tie, highest cards)';
-                else if (arrayCompare(p1, p2) < 0) result = 'player2 wins (tie, highest cards)';
-                else result = 'draw';
+        const [val1, val2] = [handvalue(hand1), handvalue(hand2)];
+        const count_val1 = val1.map(i => count(val1, i));
+        const count_val2 = val2.map(i => count(val2, i));
+        const highest1 = val1[count_val1.indexOf(Math.max(...count_val1))];
+        const highest2 = val2[count_val2.indexOf(Math.max(...count_val2))];
+        if (highest1 > highest2) result = 'player1 wins (high value rank)';
+        else if (highest1 < highest2) result = 'player2 wins (high value rank)';
+        else {
+            for (let i = 0; i < Math.max(...count_val1); i++) {
+                val1.splice(val1.indexOf(highest1), 1);
+                val2.splice(val2.indexOf(highest2), 1);
             }
+            if (arrayCompare(val1, val2) > 0) result = 'player1 wins (highest cards)';
+            else if (arrayCompare(val1, val2) < 0) result = 'player2 wins (highest cards)';
+            else result = 'draw';
         }
     }
     return {
@@ -247,7 +238,6 @@ function flipCard(card_div, card, class_name) {
 document.querySelector('.button').addEventListener('click', () => {
     let hand, rank, rank_name, result, scores, data;
     do {  // run until a hand rank in not less than n
-        const n = 1;
         data = newDeal();
         rank = data.handRanks;
         rank_name = data.rankNames;
@@ -255,8 +245,7 @@ document.querySelector('.button').addEventListener('click', () => {
         scores = data.handScores;
         hand = data.hands;
         resetDeckOfCards();
-        if (scores[0] >= n || scores[1] >= n) break;
+        if (result.includes('') && (scores.every(i => i >= 1))) break;
     } while (true);
     createPokerHtml(hand, result, rank_name, rank);
-    console.log(data.info);
 })
