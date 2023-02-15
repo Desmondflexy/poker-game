@@ -237,7 +237,7 @@ function flipCard(card_div, card, class_name) {
 
 document.querySelector('.button').addEventListener('click', () => {
     let hand, rank, rank_name, result, scores, data;
-    do {  // run until a hand rank in not less than n
+    do {  // run until given condition is met
         data = newDeal();
         rank = data.handRanks;
         rank_name = data.rankNames;
