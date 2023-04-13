@@ -2,10 +2,10 @@
 
 const [p1_span, p2_span] = document.querySelectorAll('.player span');
 const card_array = createCards();
-const card_unicodes = getCardUnicodes();
 const card_values = Array.from('23456789TJQKA');
 
-let deck_of_cards; resetDeckOfCards();
+let deck_of_cards;
+resetDeckOfCards();
 
 /**Create five card divs each for two players and store in a 2x5 array */
 function createCards() {
@@ -33,21 +33,21 @@ function resetDeckOfCards() {
     })
 }
 
-function getCardUnicodes() {
+function getCardUnicode(card) {
     const card_unicodes = {};
     let jj = 0;
     for (let j = 10; j <= 13; j++) {
         let ii = 0;
         for (let i = 1; i <= 14; i++) {
             if (i === 12) continue;
-            const card = 'A23456789TJQK'[ii] + 'SHDC'[jj];
+            const c = 'A23456789TJQK'[ii] + 'SHDC'[jj];
             const hex = `1f0${j.toString(16)}${i.toString(16)}`;
-            card_unicodes[card] = `&#${parseInt(hex, 16)};`;
+            card_unicodes[c] = `&#${parseInt(hex, 16)};`;
             ii++;
         }
         jj++;
     }
-    return card_unicodes;
+    return card_unicodes[card];
 }
 
 /**Deals a random card to player from the deck of cards */
@@ -78,6 +78,7 @@ function pokerHands(hand1, hand2) {
         const count_val2 = val2.map(i => count(val2, i));
         const highest1 = val1[count_val1.indexOf(Math.max(...count_val1))];
         const highest2 = val2[count_val2.indexOf(Math.max(...count_val2))];
+
         if (highest1 > highest2) result = 'player1 wins (high value rank)';
         else if (highest1 < highest2) result = 'player2 wins (high value rank)';
         else {
@@ -188,7 +189,7 @@ function createPokerHtml(hand, result, rName, r) {
         for (let j = 0; j < 5; j++) {  // card
             const card_div = card_array[i][j];
             const card = hand[i][j];
-            card_div.innerHTML = card_unicodes[card];
+            card_div.innerHTML = getCardUnicode(card);
             let class_name;
             if (card.includes('D') || card.includes('H')) {
                 card_div.className = 'red card';
@@ -197,7 +198,7 @@ function createPokerHtml(hand, result, rName, r) {
                 card_div.className = 'black card';
                 class_name = 'black card';
             }
-            card_div.onclick = () => flipCard(card_div, card_unicodes[card], class_name);
+            card_div.onclick = () => flipCard(card_div, card, class_name);
         }
         document.querySelectorAll('.player p')[i].innerHTML = `${rName[i]} <${r[i]}>`;
     }
@@ -227,7 +228,7 @@ function newDeal() {
 
 function flipCard(card_div, card, class_name) {
     if (card_div.innerHTML.codePointAt() === 127136) {
-        card_div.innerHTML = card;
+        card_div.innerHTML = getCardUnicode(card);
         card_div.className = class_name;
     } else {
         card_div.innerHTML = '&#127136;';
